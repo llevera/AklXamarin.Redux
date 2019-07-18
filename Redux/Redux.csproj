@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
+    <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+  </ItemGroup>
+</Project>
