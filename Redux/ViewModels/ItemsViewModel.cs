@@ -2,11 +2,15 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using Redux.Services;
+using Redux.Models;
 
 namespace Redux.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+
         public ObservableCollection<ItemViewModel> Items { get; } = new ObservableCollection<ItemViewModel>();
         public ObservableCollection<CategorySummary> Summaries { get; } = new ObservableCollection<CategorySummary>();
         public Command LoadItemsCommand { get; set; }
@@ -16,6 +20,8 @@ namespace Redux.ViewModels
             Title = "Shopping";
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
+
+        public string Title { get; set; }
 
         async Task ExecuteLoadItemsCommand()
         {

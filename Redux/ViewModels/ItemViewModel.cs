@@ -7,6 +7,7 @@ namespace Redux.ViewModels
     public class ItemViewModel : BaseViewModel
     {
         private readonly Item _item;
+        private int _quantity;
 
         public ItemViewModel(Item item)
         {
@@ -16,7 +17,18 @@ namespace Redux.ViewModels
 
         public string Text => _item.Text;
 
-        public int Quantity { get; set; }
+        public int Quantity
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged(nameof(TextColor));
+            }
+        }
 
         public Color TextColor
         {
