@@ -10,6 +10,19 @@ namespace Redux.ViewModels
         }
 
         public string CategoryLabel { get; set; }
-        public int CategoryQuantity { get; set; }
+
+        int _categoryQuantity;
+        public int CategoryQuantity
+        {
+            get
+            {
+                return _categoryQuantity;
+            }
+            set
+            {
+                _categoryQuantity = value;
+                OnPropertyChanged(nameof(CategoryQuantity));
+            }
+        }
     }
 }

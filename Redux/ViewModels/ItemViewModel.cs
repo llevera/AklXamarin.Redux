@@ -7,12 +7,12 @@ namespace Redux.ViewModels
     public class ItemViewModel : BaseViewModel
     {
         private readonly Item _item;
-        private int _quantity;
+        private readonly ItemsViewModel _itemsViewModel;
 
-        public ItemViewModel(Item item)
+        public ItemViewModel(Item item, ItemsViewModel itemsViewModel)
         {
             _item = item;
-            Quantity = item.Quantity;
+            _itemsViewModel = itemsViewModel;
         }
 
         public string Text => _item.Text;
@@ -21,11 +21,13 @@ namespace Redux.ViewModels
         {
             get
             {
-                return _quantity;
+                return _item.Quantity;
             }
             set
             {
-                _quantity = value;
+                _item.Quantity = value;
+                _itemsViewModel.UpdateSummaries();
+
                 OnPropertyChanged(nameof(TextColor));
             }
         }
