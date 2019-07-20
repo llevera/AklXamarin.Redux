@@ -1,9 +1,9 @@
 ﻿using System;
 namespace Redux.ViewModels
 {
-    public class CategorySummary : BaseViewModel
+    public class CategorySummaryViewModel : BaseViewModel
     {
-        public CategorySummary(string categoryLabel, int categoryQuantity)
+        public CategorySummaryViewModel(string categoryLabel, int categoryQuantity)
         {
             CategoryLabel = categoryLabel + ": ";
             CategoryQuantity = categoryQuantity;
