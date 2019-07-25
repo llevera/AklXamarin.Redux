@@ -21,10 +21,9 @@ namespace Redux.Store
                     .GroupBy(x => x.Category)
                     .Select(x => new CategorySummaryProps(x.Key.ToString(), x.Sum(y => y.Quantity))).ToImmutableArray();
 
-            var itemProps = state.Items.Select(x => new ItemProps(x.Text, x.Quantity, GetTextColor(x))).ToImmutableArray();
+            var itemProps = state.Items.Select(x => new ItemProps(x.Text, x.Quantity, GetTextColor(x), null)).ToImmutableArray();
 
             return new ItemsProps("Shopping", itemProps, summaryProps);
-
 
             Color GetTextColor(Item item)
             {

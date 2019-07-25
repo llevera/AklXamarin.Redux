@@ -5,59 +5,57 @@ using System.Linq;
 using Redux.Services;
 using Redux.Models;
 using System.Collections.Generic;
+using Redux.Props;
+using Redux.Store;
 
 namespace Redux.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel 
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        private IDataStore<Item> _dataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
 
-        public ObservableCollection<ItemViewModel> Items { get; } = new ObservableCollection<ItemViewModel>();
-        public ObservableCollection<CategorySummaryViewModel> Summaries { get; } = new ObservableCollection<CategorySummaryViewModel>();
-        public Command LoadItemsCommand { get; private set; }
-        public IList<Item> _items;
+        private readonly Store.Store _reduxStore;
+        
+        public ObservableCollection<ItemProps> Items { get; } = new ObservableCollection<ItemProps>();
+        public ObservableCollection<CategorySummaryProps> Summaries { get; } = new ObservableCollection<CategorySummaryProps>();
+
+        public Command LoadItemsCommand { get; }
 
         public ItemsViewModel()
         {
-            Title = "Shopping";
+            _reduxStore = new Store.Store();
+            _reduxStore.StateChanged += ReduxStoreOnStateChanged;
+            
             LoadItemsCommand = new Command(async () => await LoadItems());
+        }
+
+        private void ReduxStoreOnStateChanged(State newState)
+        {
+            var props = new ItemsPropsMapper().MapState(newState);
+            
+            Items.Clear();
+
+            foreach (var item in props.Items)
+            {
+                Items.Add(item);
+            }
+ 
+            Summaries.Clear();
+            
+            foreach (var summary in props.CategorySummaries)
+            {
+                Summaries.Add(summary);
+            }
+
+            Title = props.Title;
         }
 
         public string Title { get; set; }
 
-        public void UpdateSummaries()
-        {
-            var summaryViewModels = _items
-                .GroupBy(x => x.Category)
-                .Select(x => new CategorySummaryViewModel(x.Key.ToString(), x.Sum(y => y.Quantity)));
-
-            foreach (var summary in summaryViewModels)
-            {
-                var existingSummary = Summaries.FirstOrDefault(x => x.CategoryLabel == summary.CategoryLabel);
-
-                if (existingSummary == null)
-                {
-                    Summaries.Add(summary);
-                }
-                else
-                {
-                    existingSummary.CategoryQuantity = summary.CategoryQuantity;
-                }
-            }
-        }
 
         async Task LoadItems()
         {
-            _items = (await DataStore.GetItemsAsync(true)).ToList();
-
-            var itemViewModels = _items.Select(x => new ItemViewModel(x, this));
-
-            foreach(var item in itemViewModels)
-            {
-                Items.Add(item);
-            }
-
-            UpdateSummaries();
+            await _reduxStore.Dispatch(new LoadSaga(_dataStore));
         }
     }
 }
