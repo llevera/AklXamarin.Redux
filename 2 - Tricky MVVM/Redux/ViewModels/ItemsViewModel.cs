@@ -25,8 +25,6 @@ namespace Redux.ViewModels
             LoadItemsCommand = new Command(async () => await LoadItems());
         }
 
-        public string Title { get; set; }
-
         public void UpdateSummaries()
         {
             var summaryViewModels = _items
@@ -46,7 +44,7 @@ namespace Redux.ViewModels
 
         private async Task LoadItems()
         {
-            _items = (await _dataStore.GetItemsAsync(true)).ToList();
+            _items = (await _dataStore.GetItemsAsync()).ToList();
 
             var itemViewModels = _items.Select(x => new ItemViewModel(x, this));
 

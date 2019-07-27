@@ -25,7 +25,7 @@ namespace Redux.ViewModels
 
         private async Task LoadItems()
         {
-            var items = await _dataStore.GetItemsAsync(true);
+            var items = await _dataStore.GetItemsAsync();
 
             var sums = items
                 .GroupBy(x => x.Category)

@@ -11,15 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Views\NewItemPage.xaml.cs" />
-    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
-    <Compile Remove="Views\AboutPage.xaml.cs" />
-    <Compile Remove="ViewModels\AboutViewModel.cs" />
-    <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />

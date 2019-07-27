@@ -6,6 +6,6 @@ namespace Redux.Services
 {
     public interface IDataStore<T>
     {
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> GetItemsAsync();
     }
 }

@@ -8,11 +8,11 @@ namespace Redux.Services
 {
     public class MockDataStore : IDataStore<Item>
     {
-        private List<Item> items;
+        private readonly List<Item> _items;
 
         public MockDataStore()
         {
-            items = new List<Item>();
+            _items = new List<Item>();
             var mockItems = new List<Item>
             {
                 new Item {Text = "Sausages", Quantity = 8, Category = ItemCategory.Meat},
@@ -23,12 +23,12 @@ namespace Redux.Services
                 new Item {Text = "Celery", Quantity = 0, Category = ItemCategory.Vegetable},
             };
 
-            foreach (var item in mockItems) items.Add(item);
+            foreach (var item in mockItems) _items.Add(item);
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            return await Task.FromResult(items);
+            return await Task.FromResult(_items);
         }
     }
 }

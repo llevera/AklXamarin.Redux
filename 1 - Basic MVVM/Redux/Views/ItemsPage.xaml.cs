@@ -17,20 +17,20 @@ namespace Redux.Views
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
-        private ItemsViewModel viewModel;
+        private ItemsViewModel _viewModel;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new ItemsViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            viewModel.LoadItemsCommand.Execute(null);
+            _viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }
