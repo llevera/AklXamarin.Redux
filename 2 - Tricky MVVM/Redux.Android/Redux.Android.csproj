@@ -38,8 +38,10 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <!--   <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot> -->
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -51,7 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.0.2-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Arch.Core.Common" Version="2.0.1-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Arch.Core.Runtime" Version="2.0.1-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.0.1-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Media" Version="1.0.1-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Palette" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Transition" Version="1.0.1-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.0.0-preview01" />
     <PackageReference Include="Xamarin.Android.Support.ViewPager" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
@@ -60,7 +76,12 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0-preview01" />
+    <PackageReference Include="Xamarin.AndroidX.Migration">
+      <Version>1.0.0-preview02</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
