@@ -7,17 +7,18 @@ using Redux.Models;
 using System.Collections.Generic;
 using Redux.Props;
 using Redux.Store;
+using System.Collections.Immutable;
 
 namespace Redux.ViewModels
 {
-    public class ItemsViewModel 
+    public class ItemsViewModel  : BaseViewModel
     {
         private IDataStore<Item> _dataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
 
         private readonly Store.Store _reduxStore;
-        
-        public ObservableCollection<ItemProps> Items { get; } = new ObservableCollection<ItemProps>();
-        public ObservableCollection<CategorySummaryProps> Summaries { get; } = new ObservableCollection<CategorySummaryProps>();
+
+        public ObservableCollection<ItemProps> Items { get; private set; } = new ObservableCollection<ItemProps>();
+        public ObservableCollection<CategorySummaryProps> Summaries { get; private set; } = new ObservableCollection<CategorySummaryProps>();
 
         public Command LoadItemsCommand { get; }
 
@@ -31,21 +32,16 @@ namespace Redux.ViewModels
 
         private void ReduxStoreOnStateChanged(State newState)
         {
-            var props = new ItemsPropsMapper().MapState(newState);
-            
-            Items.Clear();
+            var props = new ItemsPropsMapper().MapState(newState, _reduxStore);
 
-            foreach (var item in props.Items)
+            if (Items.Count == 0)
             {
-                Items.Add(item);
+                Items = new ObservableCollection<ItemProps>(props.Items);
+                OnPropertyChanged(nameof(Items));
             }
- 
-            Summaries.Clear();
-            
-            foreach (var summary in props.CategorySummaries)
-            {
-                Summaries.Add(summary);
-            }
+
+            Summaries = new ObservableCollection<CategorySummaryProps>(props.CategorySummaries);
+            OnPropertyChanged(nameof(Summaries));
 
             Title = props.Title;
         }

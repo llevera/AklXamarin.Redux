@@ -33,6 +33,5 @@ namespace Redux.Views
 
             _viewModel.LoadItemsCommand.Execute(null);
         }
-
     }
 }

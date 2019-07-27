@@ -8,12 +8,8 @@ using System.Collections.Immutable;
 namespace Redux.Store
 {
     public class ItemsPropsMapper
-    {
-        public ItemsPropsMapper()
-        {
-        }
-        
-        public ItemsProps MapState(State state)
+    {        
+        public ItemsProps MapState(State state, Store store)
         {
             var summaryProps =
                     state
@@ -21,7 +17,13 @@ namespace Redux.Store
                     .GroupBy(x => x.Category)
                     .Select(x => new CategorySummaryProps(x.Key.ToString(), x.Sum(y => y.Quantity))).ToImmutableArray();
 
-            var itemProps = state.Items.Select(x => new ItemProps(x.Text, x.Quantity, GetTextColor(x), null)).ToImmutableArray();
+            var itemProps = state.Items.Select(
+                x => new ItemProps(
+                    x.Text,
+                    x.Quantity,
+                    GetTextColor(x),
+                    (quantity) => store.Dispatch(new ChangeQuantityAction(x.Category, quantity))
+                    )).ToImmutableArray();
 
             return new ItemsProps("Shopping", itemProps, summaryProps);
 

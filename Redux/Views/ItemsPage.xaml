@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Redux.Views.ItemsPage" Title="{Binding Title}" x:Name="BrowseItemsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Redux.Support"  xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Redux.Views.ItemsPage" Title="{Binding Title}" x:Name="BrowseItemsPage">
+   <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:TextChangedEventArgsConverter x:Key="TextChangedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <ListView ItemsSource="{Binding Summaries}">
             <ListView.ItemTemplate>
@@ -22,7 +27,11 @@
                     <ViewCell>
                         <Grid Padding="20,10,20,10">
                             <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                            <Entry Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40"/>
+                            <Entry Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40">
+                            <Entry.Behaviors>
+                <local:EventToCommandBehavior EventName="TextChanged" Command="{Binding QuantityChangedCommand}" Converter="{StaticResource TextChangedConverter}"/>
+            </Entry.Behaviors>
+                                </Entry>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -6,9 +6,9 @@ namespace Redux.Props
     public class ChangeQuantityAction : IAction
     {
         private readonly ItemCategory _category;
-        private readonly int _quantity;
+        private readonly string _quantity;
 
-        public ChangeQuantityAction(ItemCategory category, int quantity)
+        public ChangeQuantityAction(ItemCategory category, string quantity)
         {
             _category = category;
             _quantity = quantity;
@@ -22,7 +22,10 @@ namespace Redux.Props
             {
                 if (_category == item.Category)
                 {
-                    item.Quantity = _quantity;
+                    if (int.TryParse(_quantity, out int intQuantity))
+                    {
+                        item.Quantity = intQuantity;
+                    }
                 }
             }
 
