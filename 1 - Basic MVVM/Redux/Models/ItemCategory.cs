@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Redux.Models
 {
     public enum ItemCategory

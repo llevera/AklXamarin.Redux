@@ -27,7 +27,7 @@
                         <Grid Padding="20,10,20,10">
                             <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}"
                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                            <Label Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40" />
+                            <Entry Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
