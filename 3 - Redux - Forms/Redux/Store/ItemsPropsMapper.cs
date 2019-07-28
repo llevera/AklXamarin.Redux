@@ -22,7 +22,7 @@ namespace Redux.Store
                     x.Text,
                     x.Quantity,
                     GetTextColor(x),
-                    (quantity) => store.Dispatch(new ChangeQuantityAction(x.Category, quantity))
+                    (quantity) => store.Dispatch(new ChangeQuantityAction(x.Text, quantity))
                 )).ToImmutableArray();
 
             return new ItemsProps("Shopping", itemProps, summaryProps);

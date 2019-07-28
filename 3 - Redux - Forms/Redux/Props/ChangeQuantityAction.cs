@@ -5,12 +5,12 @@ namespace Redux.Props
 {
     public class ChangeQuantityAction : IAction
     {
-        private readonly ItemCategory _category;
+        private readonly string _text;
         private readonly string _quantity;
 
-        public ChangeQuantityAction(ItemCategory category, string quantity)
+        public ChangeQuantityAction(string text, string quantity)
         {
-            _category = category;
+            _text = text;
             _quantity = quantity;
         }
 
@@ -19,7 +19,7 @@ namespace Redux.Props
             var items = state.Items;
 
             foreach (var item in items)
-                if (_category == item.Category)
+                if (_text == item.Text)
                     if (int.TryParse(_quantity, out var intQuantity))
                         item.Quantity = intQuantity;
 
