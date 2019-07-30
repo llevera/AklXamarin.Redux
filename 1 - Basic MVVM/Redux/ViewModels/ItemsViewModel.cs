@@ -9,8 +9,8 @@ namespace Redux.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private IDataStore<Item> _dataStore => new MockDataStore();
-
+        private readonly IDataStore<Item> _dataStore = new MockDataStore();
+         
         public ObservableCollection<ItemViewModel> Items { get; } = new ObservableCollection<ItemViewModel>();
 
         public ObservableCollection<CategorySummaryViewModel> Summaries { get; } =
@@ -29,11 +29,20 @@ namespace Redux.ViewModels
 
             var sums = items
                 .GroupBy(x => x.Category)
-                .Select(x => new CategorySummaryViewModel(x.Key.ToString(), x.Sum(y => y.Quantity)));
+                .Select(x =>
+                    new CategorySummaryViewModel(
+                        x.Key.ToString(),
+                        x.Sum(y => y.Quantity)));
 
-            foreach (var sum in sums) Summaries.Add(sum);
+            foreach (var sum in sums)
+            {
+                Summaries.Add(sum);
+            }
 
-            foreach (var item in items) Items.Add(new ItemViewModel(item));
+            foreach (var item in items)
+            {
+                Items.Add(new ItemViewModel(item));
+            }
         }
     }
 }

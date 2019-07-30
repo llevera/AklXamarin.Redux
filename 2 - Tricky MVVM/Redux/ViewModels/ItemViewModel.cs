@@ -1,5 +1,4 @@
-﻿using System;
-using Redux.Models;
+﻿using Redux.Models;
 using Xamarin.Forms;
 
 namespace Redux.ViewModels
