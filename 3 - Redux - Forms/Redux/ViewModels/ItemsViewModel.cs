@@ -13,7 +13,7 @@ namespace Redux.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private IDataStore<Item> _dataStore => new MockDataStore();
+        private readonly IDataStore<Item> _dataStore = new MockDataStore();
 
         private readonly Store.Store _reduxStore;
 
