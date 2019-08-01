@@ -15,23 +15,21 @@ namespace Redux.Store
                 state
                     .Items
                     .GroupBy(x => x.Category)
-                    .Select(x => new CategorySummaryProps(x.Key.ToString(), x.Sum(y => y.Quantity))).ToImmutableArray();
+                    .Select(x => new CategorySummaryProps(x.Key.ToString(), x.Sum(y => y.Quantity), GetTextColor(x.Key))).ToImmutableArray();
 
             var itemProps = state.Items.Select(
                 x => new ItemProps(
                     x.Text,
                     x.Quantity,
-                    GetTextColor(x),
+                    GetTextColor(x.Category),
                     (quantity) => store.Dispatch(new ChangeQuantityAction(x.Text, quantity))
                 )).ToImmutableArray();
 
-            return new ItemsProps("Shopping", itemProps, summaryProps);
+            return new ItemsProps(itemProps, summaryProps);
 
-            Color GetTextColor(Item item)
+            Color GetTextColor(ItemCategory category)
             {
-                if (item.Quantity < 1) return Color.Gray;
-
-                switch (item.Category)
+                switch (category)
                 {
                     case ItemCategory.Fruit:
                         return Color.Orange;

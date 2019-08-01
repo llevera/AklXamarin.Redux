@@ -23,8 +23,6 @@ namespace Redux.ViewModels
             {
                 _item.Quantity = value;
                 _itemsViewModel.UpdateSummaries();
-
-                OnPropertyChanged(nameof(TextColor));
             }
         }
 
@@ -32,8 +30,6 @@ namespace Redux.ViewModels
         {
             get
             {
-                if (Quantity < 1) return Color.Gray;
-
                 switch (_item.Category)
                 {
                     case ItemCategory.Fruit:

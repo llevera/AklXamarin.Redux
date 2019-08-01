@@ -44,12 +44,7 @@ namespace Redux.ViewModels
 
             Summaries = new ObservableCollection<CategorySummaryProps>(props.CategorySummaries);
             OnPropertyChanged(nameof(Summaries));
-
-            Title = props.Title;
         }
-
-        public string Title { get; set; }
-
 
         private async Task LoadItems()
         {

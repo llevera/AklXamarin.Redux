@@ -117,7 +117,7 @@ namespace Redux.iOS
         public void SetProps(ItemProps props)
         {
             _categoryLabel.Text = props.Text;
-            _categoryLabel.TextColor = UIColor.FromRGB(props.TextColor.R, props.TextColor.G, props.TextColor.B);
+            _categoryLabel.TextColor = UIColor.FromRGB(props.TextColour.R, props.TextColour.G, props.TextColour.B);
 
             _quantity.Text = props.Quantity.ToString();
             _quantity.EditingDidEnd += delegate(object sender, EventArgs e)
@@ -153,6 +153,7 @@ namespace Redux.iOS
     public class SummaryViewCell : UITableViewCell
     {
         private UILabel _text;
+        private UILabel _quantity;
 
         public SummaryViewCell(IntPtr handle) : base(handle)
         {
@@ -161,11 +162,20 @@ namespace Redux.iOS
             AddSubview(_text);
             _text.LeftAnchor.ConstraintEqualTo(LeftAnchor, 12).Active = true;
             _text.TopAnchor.ConstraintEqualTo(TopAnchor, 12).Active = true;
+
+            _quantity = new UILabel();
+            _quantity.TranslatesAutoresizingMaskIntoConstraints = false;
+            AddSubview(_quantity);
+            _quantity.LeftAnchor.ConstraintEqualTo(_text.RightAnchor, 12).Active = true;
+            _quantity.TopAnchor.ConstraintEqualTo(TopAnchor, 12).Active = true;
         }
 
         public void SetProps(CategorySummaryProps props)
         {
-            _text.Text = props.CategoryLabel + ": " + props.CategoryQuantity;
+            _text.Text = props.CategoryLabel + ": ";
+            _quantity.Text = props.CategoryQuantity.ToString();
+
+            _text.TextColor = UIColor.FromRGB(props.TextColour.R, props.TextColour.G, props.TextColour.B);
         }
     }
 }
