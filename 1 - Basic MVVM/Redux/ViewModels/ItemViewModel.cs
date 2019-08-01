@@ -21,8 +21,6 @@ namespace Redux.ViewModels
         {
             get
             {
-                if (Quantity < 1) return Color.Gray;
-
                 switch (_item.Category)
                 {
                     case ItemCategory.Fruit:

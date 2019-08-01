@@ -15,7 +15,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="24, 12, 24, 12" Orientation="Horizontal">
-                            <Label Text="{Binding CategoryLabel}" />
+                            <Label Text="{Binding CategoryLabel}" TextColor="{Binding TextColor}" />
                             <Label Text="{Binding CategoryQuantity}" />
                         </StackLayout>
                     </ViewCell>
@@ -35,8 +35,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="24, 12, 24, 12">
-                            <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}"
-                                   Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                            <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}" FontSize="16" />
                             <Label Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40" />
                         </Grid>
                     </ViewCell>

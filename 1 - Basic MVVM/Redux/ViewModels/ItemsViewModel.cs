@@ -32,7 +32,9 @@ namespace Redux.ViewModels
                 .Select(x =>
                     new CategorySummaryViewModel(
                         x.Key.ToString(),
-                        x.Sum(y => y.Quantity)));
+                        x.Sum(y => y.Quantity),
+                        x.Key)
+                );
 
             foreach (var sum in sums) Summaries.Add(sum);
 
