@@ -36,9 +36,15 @@ namespace Redux.ViewModels
                         x.Key)
                 );
 
-            foreach (var sum in sums) Summaries.Add(sum);
+            foreach (var sum in sums)
+            {
+                Summaries.Add(sum);
+            }
 
-            foreach (var item in items) Items.Add(new ItemViewModel(item));
+            foreach (var item in items)
+            {
+                Items.Add(new ItemViewModel(item));
+            }
         }
     }
 }
