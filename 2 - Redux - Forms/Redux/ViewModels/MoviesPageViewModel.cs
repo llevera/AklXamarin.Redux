@@ -14,12 +14,10 @@ namespace Redux.ViewModels
     public class MoviesPageViewModel : BaseViewModel
     {
         private readonly Store.Store _reduxStore;
-        private IList<Movie> _movies;
 
-        public List<MovieProps> Movies { get; private set; } = new List<MovieProps>();
-
-        public List<GenreProps> Genres { get; private set; } =
-            new List<GenreProps>();
+        private MoviesPageProps _props = MoviesPageProps.Default;
+        public ImmutableArray<MovieProps> Movies => _props.Movies;
+        public ImmutableArray<GenreProps> Genres => _props.Genres;
 
         public MoviesPageViewModel()
         {
@@ -29,12 +27,8 @@ namespace Redux.ViewModels
 
         private void ReduxStoreOnStateChanged(State newState)
         {
-            var props = new MoviesPropsMapper().MapState(newState, _reduxStore);
-
-            Movies = new List<MovieProps>(props.Movies);
+            _props = new MoviesPropsMapper().MapState(newState, _reduxStore);
             OnPropertyChanged(nameof(Movies));
-
-            Genres = new List<GenreProps>(props.Genres);
             OnPropertyChanged(nameof(Genres));
         }
 

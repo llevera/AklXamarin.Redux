@@ -14,5 +14,9 @@ namespace Redux.Props
             Movies = movies;
             Genres = genreProps;
         }
+
+        public static MoviesPageProps Default = new MoviesPageProps(ImmutableArray<MovieProps>.Empty,
+            ImmutableArray<GenreProps>.Empty);
+
     }
 }
