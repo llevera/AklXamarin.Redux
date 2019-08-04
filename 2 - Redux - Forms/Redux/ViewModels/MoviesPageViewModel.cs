@@ -14,7 +14,6 @@ namespace Redux.ViewModels
     public class MoviesPageViewModel : BaseViewModel
     {
         private readonly Store.Store _reduxStore;
-        private readonly IDataStore _dataStore = new MockDataStore();
         private IList<Movie> _movies;
 
         public List<MovieProps> Movies { get; private set; } = new List<MovieProps>();

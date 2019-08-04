@@ -3,12 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-             x:Class="Redux.Views.MoviesPage" Title="Movie Votes">
+             x:Class="Redux.Views.MoviesPage" Title="Movie Showdown">
     <StackLayout>
         <ListView ItemsSource="{Binding Genres}">
             <ListView.Header>
                 <StackLayout>
-                    <Label Text="Genres" FontSize="32" Margin="24" />
+                    <Label Text="Genre Leaderboard" FontSize="32" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -33,7 +33,7 @@
         <ListView ItemsSource="{Binding Movies}">
             <ListView.Header>
                 <StackLayout>
-                    <Label Text="Movies" FontSize="32" Margin="24" />
+                    <Label Text="Vote Now!" FontSize="32" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
