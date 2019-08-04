@@ -12,18 +12,12 @@ namespace Redux.ViewModels
         private readonly IDataStore _dataStore = new MockDataStore();
         private IList<Movie> _movies;
 
-        public MoviesPageViewModel()
-        {
-            LoadCommand = new Command(LoadMovies);
-        }
 
-        public ObservableCollection<MovieViewModel> Movies { get; } = new ObservableCollection<MovieViewModel>();
+        public List<MovieViewModel> Movies { get; private set; } = new List<MovieViewModel>();
 
-        public ObservableCollection<GenreViewModel> Genres { get; } =
-            new ObservableCollection<GenreViewModel>();
-
-        public Command LoadCommand { get; }
-
+        public List<GenreViewModel> Genres { get; private set; } =
+            new List<GenreViewModel>();
+       
         public void UpdateGenres()
         {
             var genreViewModels =
@@ -35,15 +29,11 @@ namespace Redux.ViewModels
                             x.Sum(y => y.Votes)))
                     .OrderByDescending(x => x.Votes);
 
-            Genres.Clear();
-
-            foreach (var genre in genreViewModels)
-            {
-                Genres.Add(genre);
-            }
+            Genres = genreViewModels.ToList();
+            OnPropertyChanged(nameof(Genres));
         }
 
-        private void LoadMovies()
+        public void LoadMovies()
         {
             _movies = _dataStore.GetMovies().ToList();
 
@@ -51,12 +41,8 @@ namespace Redux.ViewModels
                 _movies.Select(x => new MovieViewModel(x, this))
                     .OrderBy(x => x.Title);
 
-            Movies.Clear();
-
-            foreach (var item in movieViewModels)
-            {
-                Movies.Add(item);
-            }
+            Movies = movieViewModels.ToList();
+            OnPropertyChanged(nameof(Movies));
 
             UpdateGenres();
         }

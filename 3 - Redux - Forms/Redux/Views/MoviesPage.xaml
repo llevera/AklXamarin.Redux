@@ -20,7 +20,8 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Text}" Grid.Column="0" />
-                            <Label Text="{Binding Votes}" HorizontalTextAlignment="End" TextColor="{Binding TextColor}" Grid.Column="1" />
+                            <Label Text="{Binding Votes}" HorizontalTextAlignment="End" TextColor="{Binding TextColor}"
+                                   Grid.Column="1" IsVisible="{Binding ShowVotes}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -48,7 +49,8 @@
                             <Label Text="{Binding Title}" Grid.Column="0" FontSize="16" />
                             <Button Text="↑" Grid.Column="1" Command="{Binding UpvoteCommand}" />
                             <Button Text="↓" Grid.Column="2" Command="{Binding DownvoteCommand}" />
-                            <Label HorizontalTextAlignment="End" Text="{Binding Votes}" TextColor="{Binding TextColor}" Grid.Column="3" />
+                            <Label HorizontalTextAlignment="End" Text="{Binding Votes}" TextColor="{Binding TextColor}"
+                                   Grid.Column="3" IsVisible="{Binding ShowVotes}"  />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

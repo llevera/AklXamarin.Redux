@@ -22,7 +22,7 @@ namespace Redux.Views
         {
             base.OnAppearing();
 
-            _viewModel.LoadCommand.Execute(null);
+            _viewModel.LoadMovies();
         }
     }
 }

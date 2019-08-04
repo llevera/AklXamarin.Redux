@@ -17,9 +17,9 @@ namespace Redux.ViewModels
         private readonly IDataStore _dataStore = new MockDataStore();
         private IList<Movie> _movies;
 
-        public List<MovieProps> Movies { get; private set;  } = new List<MovieProps>();
+        public List<MovieProps> Movies { get; private set; } = new List<MovieProps>();
 
-        public List<GenreProps> Genres { get; private set;  } =
+        public List<GenreProps> Genres { get; private set; } =
             new List<GenreProps>();
 
         public MoviesPageViewModel()
@@ -39,9 +39,9 @@ namespace Redux.ViewModels
             OnPropertyChanged(nameof(Genres));
         }
 
-        public void LoadItems()
+        public void LoadMovies()
         {
-            _reduxStore.Dispatch(new LoadAction(_dataStore));
+            _reduxStore.Dispatch(new LoadAction());
         }
     }
 }

@@ -8,9 +8,9 @@
             Votes = votes;
             Genre = genre;
         }
-        
-        public string Title { get; set; }
-        public int Votes { get; set; }
-        public Genre Genre { get; set; }
+
+        public string Title { get; }
+        public int Votes { get; }
+        public Genre Genre { get; }
     }
 }

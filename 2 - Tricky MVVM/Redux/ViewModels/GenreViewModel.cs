@@ -17,6 +17,8 @@ namespace Redux.ViewModels
 
         public string Text => _genre.ToString();
 
+        public bool ShowVotes => Votes != 0;
+
         public int Votes
         {
             get => _genreUpvotes;

@@ -24,6 +24,8 @@ namespace Redux.ViewModels
 
         public string Votes => _movie.Votes.ToString();
 
+        public bool ShowVotes => _movie.Votes != 0;
+
         public Color TextColor
         {
             get
@@ -39,6 +41,7 @@ namespace Redux.ViewModels
             _movie.Votes++;
             OnPropertyChanged(nameof(Votes));
             OnPropertyChanged(nameof(TextColor));
+            OnPropertyChanged(nameof(ShowVotes));
             _moviesPageViewModel.UpdateGenres();
         }
 
@@ -47,6 +50,7 @@ namespace Redux.ViewModels
             _movie.Votes--;
             OnPropertyChanged(nameof(Votes));
             OnPropertyChanged(nameof(TextColor));
+            OnPropertyChanged(nameof(ShowVotes));
             _moviesPageViewModel.UpdateGenres();
         }
     }
