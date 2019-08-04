@@ -7,22 +7,22 @@ namespace Redux.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class MoviesPage : ContentPage
+    public partial class BankingPage : ContentPage
     {
-        private readonly MoviesPageViewModel _viewModel;
+        private readonly BankingPageViewModel _viewModel;
 
-        public MoviesPage()
+        public BankingPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new MoviesPageViewModel();
+            BindingContext = _viewModel = new BankingPageViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            _viewModel.LoadMovies();
+            _viewModel.LoadAccounts();
         }
     }
 }
