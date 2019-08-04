@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Redux.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Redux.Services;
-using Redux.Views;
 
 namespace Redux
 {

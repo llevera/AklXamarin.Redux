@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Redux.Models;
 
 namespace Redux.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore : IDataStore
     {
-        private readonly List<Item> _items;
+        private readonly List<Movie> _items;
 
         public MockDataStore()
         {
-            _items = new List<Item>();
-            var mockItems = new List<Item>
+            _items = new List<Movie>(new[]
             {
-                new Item {Text = "Sausages", Quantity = 8, Category = ItemCategory.Meat},
-                new Item {Text = "Apples", Quantity = 15, Category = ItemCategory.Fruit},
-                new Item {Text = "Pears", Quantity = 10, Category = ItemCategory.Fruit},
-                new Item {Text = "Potatoes", Quantity = 40, Category = ItemCategory.Vegetable},
-                new Item {Text = "Eggplants", Quantity = 2, Category = ItemCategory.Vegetable},
-                new Item {Text = "Celery", Quantity = 0, Category = ItemCategory.Vegetable},
-            };
-
-            foreach (var item in mockItems) _items.Add(item);
+                new Movie {Title = "The Godfather", Genre = Genre.Drama},
+                new Movie {Title = "Shawshank Redemption", Genre = Genre.Drama},
+                new Movie {Title = "The Dark Night", Genre = Genre.Action},
+                new Movie {Title = "Alien", Genre = Genre.Horror},
+                new Movie {Title = "Terminator 2", Genre = Genre.Action},
+                new Movie {Title = "Office Space", Genre = Genre.Comedy}
+            });
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
+        public IEnumerable<Movie> GetMovies()
         {
-            return await Task.FromResult(_items);
+            return _items;
         }
     }
 }

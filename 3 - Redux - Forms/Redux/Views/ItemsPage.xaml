@@ -13,7 +13,7 @@
         <ListView ItemsSource="{Binding Summaries}">
             <ListView.Header>
                 <StackLayout>
-                    <Label Text="Food Groups" FontSize="32" Margin="24" />
+                    <Label Text="Food Groups" FontSize="24" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -33,14 +33,14 @@
         <ListView ItemsSource="{Binding Items}">
             <ListView.Header>
                 <StackLayout>
-                    <Label Text="Food Items" FontSize="32" Margin="24" />
+                    <Label Text="Food Items" FontSize="64" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="24, 12, 24, 12">
-                            <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}" FontSize="16" />
+                            <Label Text="{Binding Text}" Grid.Column="0" TextColor="{Binding TextColor}" FontSize="12" />
                             <Entry Text="{Binding Quantity}" Grid.Column="1" HorizontalOptions="End" WidthRequest="40">
                                 <Entry.Behaviors>
                                     <local:EventToCommandBehavior EventName="TextChanged"
