@@ -7,11 +7,11 @@ namespace Redux.Store
 {
     public class State
     {
-        public ImmutableArray<Movie> Movies { get; }
+        public ImmutableArray<Account> Accounts { get; }
 
-        public State(ImmutableArray<Movie> movies)
+        public State(ImmutableArray<Account> accounts)
         {
-            Movies = movies;
+            Accounts = accounts;
         }
     }
 }

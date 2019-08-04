@@ -11,15 +11,13 @@ using System.Collections.Immutable;
 
 namespace Redux.ViewModels
 {
-    public class MoviesPageViewModel : BaseViewModel
+    public class BankingPageViewModel : BaseViewModel
     {
         private readonly Store.Store _reduxStore;
 
-        private MoviesPageProps _props = MoviesPageProps.Default;
-        public ImmutableArray<MovieProps> Movies => _props.Movies;
-        public ImmutableArray<GenreProps> Genres => _props.Genres;
-
-        public MoviesPageViewModel()
+        public BankingPageProps Props = BankingPageProps.Default;
+        
+        public BankingPageViewModel()
         {
             _reduxStore = new Store.Store();
             _reduxStore.StateChanged += ReduxStoreOnStateChanged;
@@ -27,12 +25,10 @@ namespace Redux.ViewModels
 
         private void ReduxStoreOnStateChanged(State newState)
         {
-            _props = new MoviesPropsMapper().MapState(newState, _reduxStore);
-            OnPropertyChanged(nameof(Movies));
-            OnPropertyChanged(nameof(Genres));
+            Props = new BankingPagePropsMapper().MapState(newState, _reduxStore);
         }
 
-        public void LoadMovies()
+        public void LoadAccounts()
         {
             _reduxStore.Dispatch(new LoadAction());
         }

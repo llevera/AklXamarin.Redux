@@ -10,20 +10,20 @@ namespace Redux.ViewModels
         public AccountTypeSumViewModel(AccountType accountType, int sum)
         {
             _accountType = accountType;
-            Sum = sum;
+            _sum = sum;
         }
 
         public string Text => _accountType.ToString();
 
-        public int Sum { get; }
+        private int _sum;
 
-        public string SumString => Sum.ToString("c");
+        public string Sum => _sum.ToString("c");
  
         public Color TextColor
         {
             get
             {
-                if (Sum < 0)
+                if (_sum < 0)
                     return Color.OrangeRed;
                 return Color.DimGray;
             }

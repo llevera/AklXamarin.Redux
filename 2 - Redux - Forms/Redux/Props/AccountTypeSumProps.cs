@@ -4,22 +4,20 @@ using Xamarin.Forms;
 
 namespace Redux.Props
 {
-    public class GenreProps
+    public class AccountTypeSumProps
     {
-        public GenreProps(string text, int votes, Color textColor, bool showVotes)
+        public AccountTypeSumProps(string text, string sum, Color textColor)
         {
             Text = text;
-            Votes = votes;
+            Sum = sum;
             TextColor = textColor;
-            ShowVotes = showVotes;
         }
 
         public string Text { get; }
         
-        public int Votes { get; }
+        public string Sum { get; }
         
         public Color TextColor { get; }
         
-        public bool ShowVotes { get; }
     }
 }

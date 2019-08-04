@@ -1,10 +1,10 @@
 namespace Redux.Store
 {
-    public class UpvoteAction : IAction
+    public class DepositAction : IAction
     {
         public string Title { get; }
 
-        public UpvoteAction(string title)
+        public DepositAction(string title)
         {
             Title = title;
         }

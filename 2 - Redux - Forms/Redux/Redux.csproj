@@ -23,4 +23,9 @@
     <Folder Include="Store\" />
     <Folder Include="Props\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\BankingPage.xaml.cs">
+      <DependentUpon>BankingPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

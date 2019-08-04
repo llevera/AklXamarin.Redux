@@ -3,12 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-             x:Class="Redux.Views.MoviesPage" Title="Movie Showdown">
+             x:Class="Redux.Views.BankingPage" Title="Bat Bank">
     <StackLayout>
-        <ListView ItemsSource="{Binding Genres}">
+        <ListView ItemsSource="{Binding AccountTypeSums}">
             <ListView.Header>
-                <StackLayout>
-                    <Label Text="Genre Leaderboard" FontSize="32" Margin="24" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Totals" FontSize="32" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -17,10 +17,10 @@
                         <Grid Padding="24, 12, 24, 12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="88" />
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Text}" Grid.Column="0" />
-                            <Label Text="{Binding Votes}" Grid.Column="1"  HorizontalTextAlignment="End" TextColor="{Binding TextColor}" IsVisible="{Binding ShowVotes}" />
+                            <Label Text="{Binding Sum}" Grid.Column="1"  HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -29,10 +29,10 @@
                 <Label />
             </ListView.Footer>
         </ListView>
-        <ListView ItemsSource="{Binding Movies}">
+        <ListView ItemsSource="{Binding Accounts}">
             <ListView.Header>
                 <StackLayout>
-                    <Label Text="Vote Now!" FontSize="32" Margin="24" />
+                    <Label Text="Accounts" FontSize="32" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -43,12 +43,12 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="88" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Title}" Grid.Column="0" FontSize="16" />
-                            <Button Text="↑" Grid.Column="1" Command="{Binding UpvoteCommand}" />
-                            <Button Text="↓" Grid.Column="2" Command="{Binding DownvoteCommand}" />
-                            <Label Text="{Binding Votes}" Grid.Column="3" HorizontalTextAlignment="End" TextColor="{Binding TextColor}" IsVisible="{Binding ShowVotes}"  />
+                            <Label Text="{Binding Name}" Grid.Column="0" FontSize="16" />
+                            <Button Text="↑" Grid.Column="1" Command="{Binding DepositCommand}" />
+                            <Button Text="↓" Grid.Column="2" Command="{Binding WithdrawCommand}" />
+                            <Label Text="{Binding Balance}" Grid.Column="3" HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

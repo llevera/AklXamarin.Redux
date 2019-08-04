@@ -3,13 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-             x:Class="Redux.Views.BankingPage" Title="Batman's Banking">
+             x:Class="Redux.Views.BankingPage" Title="Bat Bank">
     <StackLayout>
         <ListView ItemsSource="{Binding AccountTypeSums}">
             <ListView.Header>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Grand Total" FontSize="32" Margin="24" />
-                    <Label Text="{Binding GrandTotalString}" VerticalOptions="End"  FontSize="20" Margin="24" TextColor="{Binding TextColor}"/>
+                    <Label Text="Totals" FontSize="32" Margin="24" />
                 </StackLayout>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -21,7 +20,7 @@
                                 <ColumnDefinition Width="88" />
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Text}" Grid.Column="0" />
-                            <Label Text="{Binding SumString}" Grid.Column="1"  HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
+                            <Label Text="{Binding Sum}" Grid.Column="1"  HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

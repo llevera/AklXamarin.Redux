@@ -16,35 +16,17 @@ namespace Redux.ViewModels
 
         public List<AccountTypeSumViewModel> AccountTypeSums { get; private set; } =
             new List<AccountTypeSumViewModel>();
-
-        public string GrandTotalString => _grandTotal.ToString("c");
-
-        private int _grandTotal;
-        
-        public Color TextColor
-        {
-            get
-            {
-                if (_grandTotal < 0)
-                    return Color.OrangeRed;
-                return Color.DimGray;
-            }
-        }
        
         public void UpdateAccountTypeSums()
         {
             var accountTypeSumsVewModels =
                 _accounts
                     .GroupBy(x => x.AccountType)
+                    .OrderByDescending(x => x.Sum(y => y.Balance))
                     .Select(
                         x => new AccountTypeSumViewModel(
                             x.Key,
-                            x.Sum(y => y.Balance)))
-                    .OrderByDescending(x => x.Sum);
-
-            _grandTotal = accountTypeSumsVewModels.Sum(x => x.Sum);
-            OnPropertyChanged(nameof(GrandTotalString));
-            OnPropertyChanged(nameof(TextColor));
+                            x.Sum(y => y.Balance)));
 
             AccountTypeSums = accountTypeSumsVewModels.ToList();
             OnPropertyChanged(nameof(AccountTypeSums));

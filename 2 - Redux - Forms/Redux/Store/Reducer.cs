@@ -23,16 +23,16 @@ namespace Redux.Store
             {
                 case LoadAction _:
                 {
-                    return new State(movies: _dataStore.GetMovies().ToImmutableArray());
+                    return new State(accounts: _dataStore.GetMovies().ToImmutableArray());
                 }
 
-                case UpvoteAction upvoteAction:
+                case DepositAction depositAction:
                 {
-                    return ChangeVote(title: upvoteAction.Title, change: 1);
+                    return AdjustBalance(accountName: depositAction.Title, change: 10);
                 }
-                case DownvoteAction downvoteAction:
+                case WithdrawAction withdrawAction:
                 {
-                    return ChangeVote(title: downvoteAction.Title, change: -1);
+                    return AdjustBalance(accountName: withdrawAction.Title, change: -10);
                 }
 
                 default:
@@ -41,14 +41,21 @@ namespace Redux.Store
                 }
             }
 
-            State ChangeVote(string title, int change)
+            State AdjustBalance(string accountName, int change)
             {
-                var movies = state.Movies;
+                var accounts = state.Accounts;
 
-                var oldMovie = movies.Single(x => x.Title == title);
-                var newMovie = new Movie(oldMovie.Title, oldMovie.Votes + change, oldMovie.Genre);
+                var oldAccount = accounts.Single(x => x.Name == accountName);
+                
+                if (change > 0 ||
+                    oldAccount.AccountType == AccountType.Credit ||
+                    oldAccount.Balance + change >= 0)
+                {
+                    var newAccount = new Account(oldAccount.Name, oldAccount.Balance + change, oldAccount.AccountType);
+                    return new State(state.Accounts.Replace(oldAccount, newAccount));
+                }
 
-                return new State(movies.Replace(oldMovie, newMovie));
+                return state;
             }
         }
     }
