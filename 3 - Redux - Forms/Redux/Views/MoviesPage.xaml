@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+             x:Class="Redux.Views.MoviesPage" Title="Movie Votes">
+    <StackLayout>
+        <ListView ItemsSource="{Binding Genres}">
+            <ListView.Header>
+                <StackLayout>
+                    <Label Text="Genres" FontSize="32" Margin="24" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="24, 12, 24, 12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Text}" Grid.Column="0" />
+                            <Label Text="{Binding Votes}" HorizontalTextAlignment="End" TextColor="{Binding TextColor}" Grid.Column="1" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <Label />
+            </ListView.Footer>
+        </ListView>
+        <ListView ItemsSource="{Binding Movies}">
+            <ListView.Header>
+                <StackLayout>
+                    <Label Text="Movies" FontSize="32" Margin="24" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="24, 12, 24, 12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="32" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Title}" Grid.Column="0" FontSize="16" />
+                            <Button Text="↑" Grid.Column="1" Command="{Binding UpvoteCommand}" />
+                            <Button Text="↓" Grid.Column="2" Command="{Binding DownvoteCommand}" />
+                            <Label HorizontalTextAlignment="End" Text="{Binding Votes}" TextColor="{Binding TextColor}" Grid.Column="3" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <Label />
+            </ListView.Footer>
+        </ListView>
+    </StackLayout>
+</ContentPage>

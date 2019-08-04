@@ -22,6 +22,5 @@
   <ItemGroup>
     <Folder Include="Store\" />
     <Folder Include="Props\" />
-    <Folder Include="Support\" />
   </ItemGroup>
 </Project>

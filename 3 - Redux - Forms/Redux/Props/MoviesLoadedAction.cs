@@ -4,11 +4,11 @@ using Redux.Store;
 
 namespace Redux.Props
 {
-    public class ItemsLoadedAction : IAction
+    public class MoviesLoadedAction : IAction
     {
-        private readonly ImmutableArray<Item> _items;
+        private readonly ImmutableArray<Movie> _items;
 
-        public ItemsLoadedAction(ImmutableArray<Item> items)
+        public MoviesLoadedAction(ImmutableArray<Movie> items)
         {
             _items = items;
         }
