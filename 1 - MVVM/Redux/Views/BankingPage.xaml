@@ -1,61 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-             x:Class="Redux.Views.BankingPage" Title="Bat Bank">
-    <StackLayout>
-        <ListView ItemsSource="{Binding AccountTypeSums}">
-            <ListView.Header>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Totals" FontSize="32" Margin="24" />
-                </StackLayout>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="24, 12, 24, 12">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="88" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Text}" Grid.Column="0" />
-                            <Label Text="{Binding Sum}" Grid.Column="1"  HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Footer>
-                <Label />
-            </ListView.Footer>
-        </ListView>
-        <ListView ItemsSource="{Binding Accounts}">
-            <ListView.Header>
-                <StackLayout>
-                    <Label Text="Accounts" FontSize="32" Margin="24" />
-                </StackLayout>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="24, 12, 24, 12">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="88" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Name}" Grid.Column="0" FontSize="16" />
-                            <Button Text="↑" Grid.Column="1" Command="{Binding DepositCommand}" />
-                            <Button Text="↓" Grid.Column="2" Command="{Binding WithdrawCommand}" />
-                            <Label Text="{Binding Balance}" Grid.Column="3" HorizontalTextAlignment="End" TextColor="{Binding TextColor}"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.Footer>
-                <Label />
-            </ListView.Footer>
-        </ListView>
-    </StackLayout>
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Redux.Views.BankingPage"
+             Title="Knight Ban-King">
+    <Grid>
+        <Image Source="knightking.png"
+               Aspect="AspectFill"
+               Opacity="0.1" />
+        <StackLayout>
+            <ListView ItemsSource="{Binding Totals}"
+                      BackgroundColor="Transparent">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Totals"
+                               FontSize="32"
+                               Margin="24" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="24, 12, 24, 12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="88" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Text}"
+                                       Grid.Column="0" />
+                                <Label Text="{Binding Sum}"
+                                       Grid.Column="1"
+                                       HorizontalTextAlignment="End"
+                                       TextColor="{Binding TextColor}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Label />
+                </ListView.Footer>
+            </ListView>
+            <ListView ItemsSource="{Binding Accounts}"
+                      BackgroundColor="Transparent">
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Accounts"
+                               FontSize="32"
+                               Margin="24" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="24, 12, 24, 12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="88" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}"
+                                       Grid.Column="0"
+                                       FontSize="16" />
+                                <Button Text="↑"
+                                        Grid.Column="1"
+                                        Command="{Binding DepositCommand}" />
+                                <Button Text="↓"
+                                        Grid.Column="2"
+                                        Command="{Binding WithdrawCommand}" />
+                                <Label Text="{Binding Balance}"
+                                       Grid.Column="3"
+                                       HorizontalTextAlignment="End"
+                                       TextColor="{Binding TextColor}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Label />
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+    </Grid>
 </ContentPage>

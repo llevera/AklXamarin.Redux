@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Redux.Models;
 using Redux.Services;
-using Xamarin.Forms;
 
 namespace Redux.ViewModels
 {
@@ -14,22 +12,22 @@ namespace Redux.ViewModels
 
         public List<AccountViewModel> Accounts { get; private set; } = new List<AccountViewModel>();
 
-        public List<AccountTypeSumViewModel> AccountTypeSums { get; private set; } =
-            new List<AccountTypeSumViewModel>();
+        public List<TotalViewModel> Totals { get; private set; } =
+            new List<TotalViewModel>();
        
-        public void UpdateAccountTypeSums()
+        public void UpdateTotals()
         {
-            var accountTypeSumsVewModels =
+            var totalViewModels =
                 _accounts
                     .GroupBy(x => x.AccountType)
                     .OrderByDescending(x => x.Sum(y => y.Balance))
                     .Select(
-                        x => new AccountTypeSumViewModel(
+                        x => new TotalViewModel(
                             x.Key,
                             x.Sum(y => y.Balance)));
 
-            AccountTypeSums = accountTypeSumsVewModels.ToList();
-            OnPropertyChanged(nameof(AccountTypeSums));
+            Totals = totalViewModels.ToList();
+            OnPropertyChanged(nameof(Totals));
         }
 
         public void LoadAccounts()
@@ -43,7 +41,7 @@ namespace Redux.ViewModels
             Accounts = accountViewModels.ToList();
             OnPropertyChanged(nameof(Accounts));
 
-            UpdateAccountTypeSums();
+            UpdateTotals();
         }
     }
 }

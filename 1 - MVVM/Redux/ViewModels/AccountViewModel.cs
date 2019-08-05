@@ -39,7 +39,7 @@ namespace Redux.ViewModels
             _account.Balance+=10;
             OnPropertyChanged(nameof(Balance));
             OnPropertyChanged(nameof(TextColor));
-            _bankingPageViewModel.UpdateAccountTypeSums();
+            _bankingPageViewModel.UpdateTotals();
         }
 
         private void Withdraw()
@@ -52,7 +52,7 @@ namespace Redux.ViewModels
 
             OnPropertyChanged(nameof(Balance));
             OnPropertyChanged(nameof(TextColor));
-            _bankingPageViewModel.UpdateAccountTypeSums();
+            _bankingPageViewModel.UpdateTotals();
         }
     }
 }

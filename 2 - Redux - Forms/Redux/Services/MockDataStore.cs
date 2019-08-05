@@ -11,11 +11,13 @@ namespace Redux.Services
         {
             _accounts = new List<Account>(new[]
             {
-                new Account("Alfred Expenses", 100, AccountType.Cheque),
-                new Account("Holiday to Jamaica", 200, AccountType.Savings),
-                new Account("Wayne Manor", -1000, AccountType.Mortgage),
-                new Account("iTunes (Fortnite)", 0, AccountType.Credit),
-                new Account("New Batmobile", 100, AccountType.Savings),
+                new Account("Ice Javelins (etc)", 100, AccountType.Cheque),
+                new Account("Swimming Lessons", 200, AccountType.Cheque),
+                new Account("Wall Damage Repayments", -1000, AccountType.Loan),
+                new Account("Season 8 Remake", 0, AccountType.Savings),
+                new Account("Payroll", 800, AccountType.Cheque),
+                new Account("Snowmobile", 100, AccountType.Savings),
+                new Account("Dragon Food", 20, AccountType.Credit)
             });
         }
 

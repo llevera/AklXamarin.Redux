@@ -16,7 +16,9 @@ namespace Redux.ViewModels
         private readonly Store.Store _reduxStore;
 
         public BankingPageProps Props = BankingPageProps.Default;
-        
+        public ImmutableArray<AccountProps> Accounts => Props.Accounts;
+        public ImmutableArray<AccountTypeSumProps> Totals => Props.Totals;
+
         public BankingPageViewModel()
         {
             _reduxStore = new Store.Store();
@@ -26,6 +28,8 @@ namespace Redux.ViewModels
         private void ReduxStoreOnStateChanged(State newState)
         {
             Props = new BankingPagePropsMapper().MapState(newState, _reduxStore);
+            OnPropertyChanged(nameof(Accounts));
+            OnPropertyChanged(nameof(Totals));
         }
 
         public void LoadAccounts()

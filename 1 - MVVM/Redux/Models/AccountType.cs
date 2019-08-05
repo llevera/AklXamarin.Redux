@@ -3,7 +3,7 @@
     public enum AccountType
     {
         Savings,
-        Mortgage,
+        Loan,
         Credit,
         Cheque
     }
