@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Redux.Models;
 
 namespace Redux.Services
 {
-    public interface IDataStore<T>
+    public interface IDataStore
     {
-        Task<IEnumerable<T>> GetItemsAsync();
+        IEnumerable<Account> GetMovies();
     }
 }

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 using Redux.Models;
 
 namespace Redux.Store
 {
     public class State
     {
-        public IList<Item> Items { get; }
-
-        public State(IList<Item> items)
+        public State(ImmutableArray<Account> accounts)
         {
-            Items = items;
+            Accounts = accounts;
         }
+
+        public ImmutableArray<Account> Accounts { get; }
     }
 }

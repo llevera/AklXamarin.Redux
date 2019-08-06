@@ -11,7 +11,7 @@ using UIKit;
 
 namespace Redux.iOS
 {
-    [Register("MainViewController")]
+    
     partial class MainViewController
     {
         void ReleaseDesignerOutlets()

@@ -1,34 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Redux.Models;
 
 namespace Redux.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore : IDataStore
     {
-        private readonly List<Item> _items;
+        private readonly List<Account> _accounts;
 
         public MockDataStore()
         {
-            _items = new List<Item>();
-            var mockItems = new List<Item>
+            _accounts = new List<Account>(new[]
             {
-                new Item {Text = "Sausages", Quantity = 8, Category = ItemCategory.Meat},
-                new Item {Text = "Apples", Quantity = 15, Category = ItemCategory.Fruit},
-                new Item {Text = "Pears", Quantity = 10, Category = ItemCategory.Fruit},
-                new Item {Text = "Potatoes", Quantity = 40, Category = ItemCategory.Vegetable},
-                new Item {Text = "Eggplants", Quantity = 2, Category = ItemCategory.Vegetable},
-                new Item {Text = "Celery", Quantity = 0, Category = ItemCategory.Vegetable},
-            };
-
-            foreach (var item in mockItems) _items.Add(item);
+                new Account("Ice Javelins (etc)", 100, AccountType.Cheque),
+                new Account("Swimming Lessons", 200, AccountType.Cheque),
+                new Account("Wall Damage Repayments", -1000, AccountType.Loan),
+                new Account("Season 8 Remake", 0, AccountType.Savings),
+                new Account("Payroll", 800, AccountType.Cheque),
+                new Account("Snowmobile", 100, AccountType.Savings),
+                new Account("Dragon Food", 20, AccountType.Credit)
+            });
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync()
+        public IEnumerable<Account> GetMovies()
         {
-            return await Task.FromResult(_items);
+            return _accounts;
         }
     }
 }

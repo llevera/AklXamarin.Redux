@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Redux.Props
+﻿namespace Redux.Props
 {
     public struct Colour
     {
