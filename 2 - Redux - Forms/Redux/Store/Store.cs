@@ -20,7 +20,7 @@ namespace Redux.Store
     public interface IAction
     {
     }
-
+    
     public interface IReducer
     {
         State Reduce(State state,IAction action);

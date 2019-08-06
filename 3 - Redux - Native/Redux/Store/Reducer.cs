@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Redux.Models;
+using Redux.Props;
 using Redux.Services;
 
 namespace Redux.Store
 {
     public class Reducer : IReducer
     {
-        private readonly IDataStore _dataStore;
-
-        public Reducer(IDataStore dataStore)
-        {
-            _dataStore = dataStore;
-        }
+        private readonly IDataStore _dataStore = new MockDataStore();
 
         public State Reduce(State state, IAction action)
         {
@@ -21,17 +18,16 @@ namespace Redux.Store
             {
                 case LoadAction _:
                 {
-                    return new State(_dataStore.GetMovies().ToImmutableArray());
+                    return new State(accounts: _dataStore.GetAccounts().ToImmutableArray());
                 }
 
                 case DepositAction depositAction:
                 {
-                    return AdjustBalance(depositAction.Title, 10);
+                    return AdjustBalance(accountName: depositAction.Title, change: 10);
                 }
-
                 case WithdrawAction withdrawAction:
                 {
-                    return AdjustBalance(withdrawAction.Title, -10);
+                    return AdjustBalance(accountName: withdrawAction.Title, change: -10);
                 }
 
                 default:
@@ -45,7 +41,7 @@ namespace Redux.Store
                 var accounts = state.Accounts;
 
                 var oldAccount = accounts.Single(x => x.Name == accountName);
-
+                
                 if (change > 0 ||
                     oldAccount.AccountType == AccountType.Credit ||
                     oldAccount.Balance + change >= 0)

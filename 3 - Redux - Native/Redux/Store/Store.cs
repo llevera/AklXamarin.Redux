@@ -1,12 +1,13 @@
 using System;
+using System.Threading.Tasks;
 using Redux.Services;
 
 namespace Redux.Store
 {
     public class Store
     {
+        private readonly IReducer _reducer = new Reducer();
         private State _currentState;
-        private readonly IReducer _reducer = new Reducer(new MockDataStore());
         public event Action<State> StateChanged;
 
         public void Dispatch(IAction action)
@@ -16,12 +17,12 @@ namespace Redux.Store
         }
     }
 
-    public interface IReducer
-    {
-        State Reduce(State state, IAction action);
-    }
-
     public interface IAction
     {
+    }
+
+    public interface IReducer
+    {
+        State Reduce(State state,IAction action);
     }
 }
