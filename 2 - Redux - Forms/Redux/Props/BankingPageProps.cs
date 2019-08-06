@@ -6,20 +6,20 @@ namespace Redux.Props
     public class BankingPageProps
     {
         public ImmutableArray<AccountProps> Accounts { get; }
-        public ImmutableArray<AccountTypeSumProps> Totals { get; }
+        public ImmutableArray<TotalProps> Totals { get; }
 
         public BankingPageProps(
             ImmutableArray<AccountProps> accounts,
-            ImmutableArray<AccountTypeSumProps> accountTypeSumProps)
+            ImmutableArray<TotalProps> totals)
         {
             Accounts = accounts;
-            Totals = accountTypeSumProps;
+            Totals = totals;
         }
         
 
         public static BankingPageProps Default = new BankingPageProps(
             ImmutableArray<AccountProps>.Empty,
-            ImmutableArray<AccountTypeSumProps>.Empty
+            ImmutableArray<TotalProps>.Empty
             );
 
     }

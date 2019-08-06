@@ -10,12 +10,7 @@ namespace Redux.Store
 {
     public class Reducer : IReducer
     {
-        private readonly IDataStore _dataStore;
-
-        public Reducer(IDataStore dataStore)
-        {
-            _dataStore = dataStore;
-        }
+        private readonly IDataStore _dataStore = new MockDataStore();
 
         public State Reduce(State state, IAction action)
         {
@@ -23,7 +18,7 @@ namespace Redux.Store
             {
                 case LoadAction _:
                 {
-                    return new State(accounts: _dataStore.GetMovies().ToImmutableArray());
+                    return new State(accounts: _dataStore.GetAccounts().ToImmutableArray());
                 }
 
                 case DepositAction depositAction:

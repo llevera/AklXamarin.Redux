@@ -21,7 +21,7 @@ namespace Redux.Services
             });
         }
 
-        public IEnumerable<Account> GetMovies()
+        public IEnumerable<Account> GetAccounts()
         {
             return _accounts;
         }

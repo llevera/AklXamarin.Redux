@@ -13,7 +13,8 @@
                Opacity="0.1" />
         <StackLayout>
             <ListView ItemsSource="{Binding Totals}"
-                      BackgroundColor="Transparent">
+                      BackgroundColor="Transparent"
+                      SelectionMode="None">
                 <ListView.Header>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Totals"
@@ -44,6 +45,7 @@
                 </ListView.Footer>
             </ListView>
             <ListView ItemsSource="{Binding Accounts}"
+                      SelectionMode="None"
                       BackgroundColor="Transparent">
                 <ListView.Header>
                     <StackLayout>
@@ -67,9 +69,13 @@
                                        FontSize="16" />
                                 <Button Text="↑"
                                         Grid.Column="1"
+                                        BorderColor="Transparent"
+                                        BackgroundColor="Transparent"
                                         Command="{Binding DepositCommand}" />
                                 <Button Text="↓"
                                         Grid.Column="2"
+                                        BorderColor="Transparent"
+                                        BackgroundColor="Transparent"
                                         Command="{Binding WithdrawCommand}" />
                                 <Label Text="{Binding Balance}"
                                        Grid.Column="3"

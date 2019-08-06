@@ -5,6 +5,6 @@ namespace Redux.Services
 {
     public interface IDataStore
     {
-        IEnumerable<Account> GetMovies();
+        IEnumerable<Account> GetAccounts();
     }
 }

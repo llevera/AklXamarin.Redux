@@ -9,12 +9,12 @@ namespace Redux.Props
     {
         public BankingPageProps MapState(State state, Store.Store store)
         {
-            var accountTypeSumProps =
+            var totalsProps =
                 state.Accounts
                     .GroupBy(x => x.AccountType)
                     .OrderByDescending(x=>x.Sum(selector: y => y.Balance))
                     .Select(
-                        x => new AccountTypeSumProps(
+                        x => new TotalProps(
                             text: x.Key.ToString(),
                             sum: x.Sum(selector: y => y.Balance).ToString("c"),
                             textColor: GetTextColor(balance: x.Sum(selector: y => y.Balance))))
@@ -34,7 +34,7 @@ namespace Redux.Props
 
             return new BankingPageProps(
                 accounts: accountsProps, 
-                accountTypeSumProps: accountTypeSumProps
+                totals: totalsProps
             );
 
             Color GetTextColor(int balance)

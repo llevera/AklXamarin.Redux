@@ -8,7 +8,7 @@
             Balance = balance;
             AccountType = accountType;
         }
-        
+
         public string Name { get; }
         public int Balance { get; }
         public AccountType AccountType { get; }

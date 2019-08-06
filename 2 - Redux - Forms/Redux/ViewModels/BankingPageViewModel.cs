@@ -17,7 +17,7 @@ namespace Redux.ViewModels
 
         public BankingPageProps Props = BankingPageProps.Default;
         public ImmutableArray<AccountProps> Accounts => Props.Accounts;
-        public ImmutableArray<AccountTypeSumProps> Totals => Props.Totals;
+        public ImmutableArray<TotalProps> Totals => Props.Totals;
 
         public BankingPageViewModel()
         {

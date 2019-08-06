@@ -32,15 +32,16 @@ namespace Redux.ViewModels
 
         public void LoadAccounts()
         {
-            _accounts = _dataStore.GetMovies().ToList();
+            _accounts = _dataStore.GetAccounts().ToList();
 
-            var accountViewModels =
-                _accounts.Select(x => new AccountViewModel(account: x, bankingPageViewModel: this))
-                    .OrderBy(x => x.Name);
+            Accounts =
+                _accounts.Select(
+                    x => new AccountViewModel(
+                        account: x,
+                        bankingPageViewModel: this))
+                    .OrderBy(x => x.Name).ToList(); ;
 
-            Accounts = accountViewModels.ToList();
             OnPropertyChanged(nameof(Accounts));
-
             UpdateTotals();
         }
     }

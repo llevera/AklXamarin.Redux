@@ -6,7 +6,7 @@ namespace Redux.Store
 {
     public class Store
     {
-        private IReducer _reducer = new Reducer(new MockDataStore());
+        private readonly IReducer _reducer = new Reducer();
         private State _currentState;
         public event Action<State> StateChanged;
 
@@ -17,12 +17,12 @@ namespace Redux.Store
         }
     }
 
+    public interface IAction
+    {
+    }
+
     public interface IReducer
     {
         State Reduce(State state,IAction action);
-    }
-    
-    public interface IAction
-    {
     }
 }
