@@ -1,14 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using Redux.Services;
-
 namespace Redux.Store
 {
     public class Store
     {
         private readonly IReducer _reducer = new Reducer();
         private State _currentState;
-        public event Action<State> StateChanged;
+
+        public delegate void StateChangeDelegate(State state);
+        public event StateChangeDelegate StateChanged;
 
         public void Dispatch(IAction action)
         {
@@ -20,9 +18,9 @@ namespace Redux.Store
     public interface IAction
     {
     }
-
+    
     public interface IReducer
     {
-        State Reduce(State state,IAction action);
+        State Reduce(State state, IAction action);
     }
 }
