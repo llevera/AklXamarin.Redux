@@ -20,7 +20,11 @@ namespace Redux.Views
         public BankingPage()
         {
             InitializeComponent();
-            _reduxStore.StateChanged += (newState) => ReduxStoreOnStateChanged(newState);
+            _reduxStore.StateChanged += (newState) =>
+            {
+                ReduxStoreOnStateChanged(newState);
+            };
+
             BindingContext = this;
         }
 
